@@ -1,0 +1,11 @@
+C:\aorgish-net-training-tasks-32449dfbbae5\05-LinqToXml\LinqToXml.Test\bin\Debug\LinqToXml.Test.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\05-LinqToXml\LinqToXml.Test\bin\Debug\LinqToXml.Test.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\05-LinqToXml\LinqToXml.Test\bin\Debug\LinqToXml.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\05-LinqToXml\LinqToXml.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\05-LinqToXml\LinqToXml.Test\bin\Debug\LinqToXml.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\05-LinqToXml\LinqToXml.Test\obj\Debug\LinqToXml.Test.csprojResolveAssemblyReference.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\05-LinqToXml\LinqToXml.Test\obj\Debug\LinqToXml.Test.LinqToXmlResources.resources
+C:\aorgish-net-training-tasks-32449dfbbae5\05-LinqToXml\LinqToXml.Test\obj\Debug\LinqToXml.Test.csproj.GenerateResource.Cache
+C:\aorgish-net-training-tasks-32449dfbbae5\05-LinqToXml\LinqToXml.Test\obj\Debug\LinqToXml.Test.csproj.CoreCompileInputs.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\05-LinqToXml\LinqToXml.Test\obj\Debug\LinqToXml.Test.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\05-LinqToXml\LinqToXml.Test\obj\Debug\LinqToXml.Test.pdb

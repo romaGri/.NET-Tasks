@@ -1,0 +1,6 @@
+C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\Enumerable\bin\Debug\Enumerable.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\Enumerable\bin\Debug\Enumerable.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\Enumerable\obj\Debug\Enumerable.csproj.CoreCompileInputs.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\Enumerable\obj\Debug\Enumerable.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\Enumerable\obj\Debug\Enumerable.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\Enumerable\obj\Debug\Enumerable.csprojResolveAssemblyReference.cache
