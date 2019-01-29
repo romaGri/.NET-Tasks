@@ -87,13 +87,13 @@ namespace IQueryableTask
             while (position < ravResult.Length)
             {
                 posKey = ravResult.IndexOf(" type=", position);
-                
+
                 if (posKey == -1)
                 {
                     sb.Append(ravResult, position, ravResult.Length - position);
                     break;
                 }
-                sb.Append(ravResult , position , posKey + 6);
+                sb.Append(ravResult, position, posKey + 6);
 
                 position += posKey + 6;
 
@@ -103,13 +103,100 @@ namespace IQueryableTask
                     posWhitespace = ravResult.Length - position;
                 }
                 bufValue = "\"" + Enum.GetName(typeof(QuestionType),
-                    Int32.Parse(ravResult.Substring(position, posWhitespace))).ToLower() +"\"";
+                    Int32.Parse(ravResult.Substring(position, posWhitespace))).ToLower() + "\"";
                 sb.Append(bufValue);
                 position += posWhitespace;
             }
 
             return sb.ToString();
 
+        }
+
+        private static Expression StripQuotes(Expression e)
+        {
+            if (e.NodeType == ExpressionType.Quote)
+            {
+                e = ((UnaryExpression)e).Operand;
+            }
+
+            return e;
+        }
+
+        protected override Expression VisitMethodCall(MethodCallExpression m)
+        {
+            if (m.Method.DeclaringType == typeof(Queryable) && m.Method.Name == "Where")
+            {
+                sb.Append(" where");
+                this.Visit(m.Arguments[0]);
+
+                LambdaExpression lambda = (LambdaExpression)StripQuotes(m.Arguments[0]);
+
+                this.Visit(lambda.Body);
+
+                return m;
+            }
+            else if (m.Method.Name == "Contains")
+            {
+                this.Visit(m.Object);
+                sb.Append(m.Arguments[0]);
+                return m;
+            }
+            throw new InvalidOperationException();
+
+        }
+
+        protected override Expression VisitUnary(UnaryExpression u)
+        {
+            switch (u.NodeType)
+            {
+                case ExpressionType.Not:
+                    this.Visit(u.Operand);
+                    break;
+                case ExpressionType.Convert:
+                    this.Visit(u.Operand);
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+            return u;
+        }
+
+        protected override Expression VisitBinary(BinaryExpression b)
+        {
+            this.Visit(b.Left);
+            switch (b.NodeType)
+            {
+                case ExpressionType.Equal:
+                    sb.Append("=");
+                    break;
+                case ExpressionType.NotEqual:
+                    sb.Append("<>");
+                    break;
+                case ExpressionType.LessThan:
+                    sb.Append("<");
+                    break;
+                case ExpressionType.LessThanOrEqual:
+                    sb.Append("<=");
+                    break;
+                case ExpressionType.GreaterThan:
+                    sb.Append(">");
+                    break;
+                case ExpressionType.GreaterThanOrEqual:
+                    sb.Append(">=");
+                    break;
+                case ExpressionType.And:
+                    sb.Append(" and");
+                    break;
+                case ExpressionType.AndAlso:
+                    sb.Append(" and");
+                    break;
+                case ExpressionType.Or:
+                    sb.Append(" or");
+                    break;
+
+            }
+            this.Visit(b.Right);
+            return b;
         }
 
 
