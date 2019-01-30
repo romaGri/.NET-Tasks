@@ -199,6 +199,71 @@ namespace IQueryableTask
             return b;
         }
 
+        protected override Expression VisitConstant(ConstantExpression c)
+        {
+            IQueryable q = c.Value as IQueryable;
+
+            if (q != null)
+            {
+                sb.Append("select * from");
+            }
+            else if (c.Value == null)
+            {
+                sb.Append(" NULL");
+            }
+            else
+            {
+                switch (Type.GetTypeCode(c.Value.GetType()))
+                {
+                    case TypeCode.Boolean:
+
+                        sb.Append(((bool)c.Value) ? 1 : 0);
+
+                        break;
+
+                    case TypeCode.String:
+
+                        sb.Append("\"");
+                        sb.Append(c.Value);
+                        sb.Append("\"");
+
+                        break;
+
+                    case TypeCode.Object:
+
+                        throw new NotSupportedException();
+
+                    default:
+
+                        sb.Append(c.Value);
+
+                        break;
+                }
+            }
+            return c;
+        }
+
+        protected override Expression VisitMember(MemberExpression m )
+        {
+            if (m.Expression != null && m.Expression.NodeType == ExpressionType.Parameter)
+            {
+                if (m.Member.Name == "Subject")
+                {
+                    sb.Append(" query=");
+                }
+                if (m.Member.Name == "Type")
+                {
+                    sb.Append(" type");
+                }
+                if (m.Member.Name == "Category")
+                {
+                    sb.Append(" category_name");
+                }
+                return m;
+            }
+            throw new NotSupportedException();
+        } 
+
 
     }
 }

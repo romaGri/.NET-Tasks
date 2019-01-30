@@ -3,7 +3,8 @@ C:\aorgish-net-training-tasks-32449dfbbae5\06-IQueryable\IQueryable.Tests\bin\De
 C:\aorgish-net-training-tasks-32449dfbbae5\06-IQueryable\IQueryable.Tests\bin\Debug\IQueryableTask.dll
 C:\aorgish-net-training-tasks-32449dfbbae5\06-IQueryable\IQueryable.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\aorgish-net-training-tasks-32449dfbbae5\06-IQueryable\IQueryable.Tests\bin\Debug\IQueryableTask.pdb
-C:\aorgish-net-training-tasks-32449dfbbae5\06-IQueryable\IQueryable.Tests\obj\Debug\IQueryableTests.Tests.csprojResolveAssemblyReference.cache
 C:\aorgish-net-training-tasks-32449dfbbae5\06-IQueryable\IQueryable.Tests\obj\Debug\IQueryableTests.Tests.csproj.CoreCompileInputs.cache
 C:\aorgish-net-training-tasks-32449dfbbae5\06-IQueryable\IQueryable.Tests\obj\Debug\IQueryable.Tests.dll
 C:\aorgish-net-training-tasks-32449dfbbae5\06-IQueryable\IQueryable.Tests\obj\Debug\IQueryable.Tests.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\06-IQueryable\IQueryable.Tests\obj\Debug\IQueryableTests.Tests.csprojAssemblyReference.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\06-IQueryable\IQueryable.Tests\obj\Debug\IQueryableTests.Tests.csproj.CopyComplete
