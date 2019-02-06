@@ -48,92 +48,96 @@ namespace IQueryableTask
         public string GetYqlQuery(Expression expression)
         {
             // TODO: Implement GetYqlQuery
-            return new QueryTranslate().Translate(expression);
+            return new QueryTranslator().Translate(expression);
 
 
             // HINT: Create a class derived from ExpressionVisitor
         }
     }
 
-    internal class QueryTranslate : ExpressionVisitor
-    {
-        private const string V = "\"";
-        System.Text.StringBuilder sb;
-        internal QueryTranslate()
-        {
 
+    internal class QueryTranslator : ExpressionVisitor
+    {
+        System.Text.StringBuilder sb;
+        internal QueryTranslator()
+        {
         }
 
         internal string Translate(Expression expression)
         {
             this.sb = new System.Text.StringBuilder();
-            sb.Append("select * from answers.serach");
+            sb.Append("select * from answers.search");
 
             this.Visit(expression);
-            var ravResult = this.sb.ToString();
+            var rawResult = this.sb.ToString();
 
-            if (ravResult.Contains(" category_name=") && !ravResult.Contains("query="))
+            if (rawResult.Contains(" category_name=") && !rawResult.Contains(" query="))
             {
-                throw new InvalidOperationException("thre is no part of query");
+                throw new InvalidOperationException("There is no Subject.Contains() part of query");
             }
 
             sb.Clear();
-
             int position = 0;
             int posKey;
             int posWhitespace = 0;
-            string bufValue;
-
-            while (position < ravResult.Length)
+            string bufVal;
+            while (position < rawResult.Length)
             {
-                posKey = ravResult.IndexOf(" type=", position);
-
+                posKey = rawResult.IndexOf(" type=", position);
                 if (posKey == -1)
                 {
-                    sb.Append(ravResult, position, ravResult.Length - position);
+                    sb.Append(rawResult, position, rawResult.Length - position);
                     break;
                 }
-                sb.Append(ravResult, position, posKey + 6);
+                sb.Append(rawResult, position, posKey + 6);
 
                 position += posKey + 6;
 
-                posWhitespace = ravResult.IndexOf("", position);
+                posWhitespace = rawResult.IndexOf(" ", position);
                 if (posWhitespace == -1)
                 {
-                    posWhitespace = ravResult.Length - position;
+                    posWhitespace = rawResult.Length - position;
                 }
-                bufValue = "\"" + Enum.GetName(typeof(QuestionType),
-                    Int32.Parse(ravResult.Substring(position, posWhitespace))).ToLower() + "\"";
-                sb.Append(bufValue);
+                bufVal = "\"" + Enum.GetName(typeof(QuestionType), Int32.Parse(rawResult.Substring(position, posWhitespace))).ToLower() + "\"";
+                sb.Append(bufVal);
                 position += posWhitespace;
             }
 
             return sb.ToString();
-
         }
 
         private static Expression StripQuotes(Expression e)
         {
-            if (e.NodeType == ExpressionType.Quote)
+
+            while (e.NodeType == ExpressionType.Quote)
             {
+
                 e = ((UnaryExpression)e).Operand;
+
             }
 
             return e;
+
         }
 
         protected override Expression VisitMethodCall(MethodCallExpression m)
         {
+
             if (m.Method.DeclaringType == typeof(Queryable) && m.Method.Name == "Where")
             {
+
                 sb.Append(" where");
+
                 this.Visit(m.Arguments[0]);
 
-                LambdaExpression lambda = (LambdaExpression)StripQuotes(m.Arguments[0]);
+                //sb.Append(") AS T WHERE “);
+
+                LambdaExpression lambda = (LambdaExpression)StripQuotes(m.Arguments[1]);
 
                 this.Visit(lambda.Body);
 
                 return m;
+
             }
             else if (m.Method.Name == "Contains")
             {
@@ -141,129 +145,150 @@ namespace IQueryableTask
                 sb.Append(m.Arguments[0]);
                 return m;
             }
+
             throw new InvalidOperationException();
+            //NotSupportedException(string.Format("The method ‘{ 0 }’ is not supported", m.Method.Name));
 
         }
 
         protected override Expression VisitUnary(UnaryExpression u)
         {
+
             switch (u.NodeType)
             {
+
                 case ExpressionType.Not:
+
+                    //sb.Append(" NOT ");
+
                     this.Visit(u.Operand);
+
                     break;
                 case ExpressionType.Convert:
+
                     this.Visit(u.Operand);
+
                     break;
+
                 default:
-                    throw new NotSupportedException();
+
+                    throw new NotSupportedException(string.Format("The unary operator ‘{ 0 }’ is not supported", u.NodeType));
+
             }
+
             return u;
+
         }
 
         protected override Expression VisitBinary(BinaryExpression b)
         {
+
+            //sb.Append("(");
+
             this.Visit(b.Left);
+
             switch (b.NodeType)
             {
-                case ExpressionType.Equal:
-                    sb.Append("=");
-                    break;
-                case ExpressionType.NotEqual:
-                    sb.Append("<>");
-                    break;
-                case ExpressionType.LessThan:
-                    sb.Append("<");
-                    break;
-                case ExpressionType.LessThanOrEqual:
-                    sb.Append("<=");
-                    break;
-                case ExpressionType.GreaterThan:
-                    sb.Append(">");
-                    break;
-                case ExpressionType.GreaterThanOrEqual:
-                    sb.Append(">=");
-                    break;
+
                 case ExpressionType.And:
+
                     sb.Append(" and");
+
                     break;
                 case ExpressionType.AndAlso:
                     sb.Append(" and");
+
                     break;
+
                 case ExpressionType.Or:
+
                     sb.Append(" or");
+
                     break;
 
+                case ExpressionType.Equal:
+
+                    sb.Append("=");
+
+                    break;
+
+                case ExpressionType.NotEqual:
+
+                    sb.Append("<>");
+
+                    break;
+
+                case ExpressionType.LessThan:
+
+                    sb.Append("<");
+
+                    break;
+
+                case ExpressionType.LessThanOrEqual:
+
+                    sb.Append("<=");
+
+                    break;
+
+                case ExpressionType.GreaterThan:
+
+                    sb.Append(">");
+
+                    break;
+
+                case ExpressionType.GreaterThanOrEqual:
+
+                    sb.Append(">=");
+
+                    break;
+
+                default:
+
+                    throw new NotSupportedException(string.Format("The binary operator ‘{ 0 }’ is not supported", b.NodeType));
+
             }
+
+
             this.Visit(b.Right);
+
+            //sb.Append(")");
+
             return b;
+
         }
 
-        protected override Expression VisitConstant(ConstantExpression c)
+
+
+
+
+        protected override Expression VisitMember(MemberExpression m)
         {
-            IQueryable q = c.Value as IQueryable;
 
-            if (q != null)
-            {
-                sb.Append("select * from");
-            }
-            else if (c.Value == null)
-            {
-                sb.Append(" NULL");
-            }
-            else
-            {
-                switch (Type.GetTypeCode(c.Value.GetType()))
-                {
-                    case TypeCode.Boolean:
-
-                        sb.Append(((bool)c.Value) ? 1 : 0);
-
-                        break;
-
-                    case TypeCode.String:
-
-                        sb.Append("\"");
-                        sb.Append(c.Value);
-                        sb.Append("\"");
-
-                        break;
-
-                    case TypeCode.Object:
-
-                        throw new NotSupportedException();
-
-                    default:
-
-                        sb.Append(c.Value);
-
-                        break;
-                }
-            }
-            return c;
-        }
-
-        protected override Expression VisitMember(MemberExpression m )
-        {
             if (m.Expression != null && m.Expression.NodeType == ExpressionType.Parameter)
             {
                 if (m.Member.Name == "Subject")
                 {
                     sb.Append(" query=");
                 }
-                if (m.Member.Name == "Type")
+                else if (m.Member.Name == "Type")
                 {
                     sb.Append(" type");
                 }
-                if (m.Member.Name == "Category")
+                else if (m.Member.Name == "Category")
                 {
                     sb.Append(" category_name");
                 }
+                else
+                {
+                    throw new NotSupportedException(string.Format("Query by member {0} is not supported", m.Member.Name));
+                }
+
                 return m;
+
             }
-            throw new NotSupportedException();
-        } 
 
+            throw new NotSupportedException(string.Format("The member ‘{ 0 }’ is not supported", m.Member.Name));
 
+        }
     }
 }
