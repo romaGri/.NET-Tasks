@@ -1,0 +1,14 @@
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\bin\Debug\Resources\german_ISO-8859-1.txt
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\bin\Debug\Resources\Planets.xlsx
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\bin\Debug\Resources\Planets.xlsx.deflate
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\bin\Debug\Resources\Planets.xlsx.gzip
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\bin\Debug\IOStreams.Tests.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\bin\Debug\IOStreams.Tests.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\bin\Debug\IOStreams.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\bin\Debug\IOStreams.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\obj\Debug\IOStreams.Tests.csprojAssemblyReference.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\obj\Debug\IOStreams.Tests.csproj.CoreCompileInputs.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\obj\Debug\IOStreams.Tests.csproj.CopyComplete
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\obj\Debug\IOStreams.Tests.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\07-IO Streams\IOStreams.Tests\obj\Debug\IOStreams.Tests.pdb
