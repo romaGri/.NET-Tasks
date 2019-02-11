@@ -14,40 +14,79 @@ namespace IOStreams
 
 	public static class TestTasks
 	{
-		/// <summary>
-		/// Parses Resourses\Planets.xlsx file and returns the planet data: 
-		///   Jupiter     69911.00
-		///   Saturn      58232.00
-		///   Uranus      25362.00
-		///    ...
-		/// See Resourses\Planets.xlsx for details
-		/// </summary>
-		/// <param name="xlsxFileName">source file name</param>
-		/// <returns>sequence of PlanetInfo</returns>
-		public static IEnumerable<PlanetInfo> ReadPlanetInfoFromXlsx(string xlsxFileName)
+        /// <summary>
+        /// Parses Resourses\Planets.xlsx file and returns the planet data: 
+        ///   Jupiter     69911.00
+        ///   Saturn      58232.00
+        ///   Uranus      25362.00
+        ///    ...
+        /// See Resourses\Planets.xlsx for details
+        /// </summary>
+        /// <param name="xlsxFileName">source file name</param>
+        /// <returns>sequence of PlanetInfo</returns>
+        public static IEnumerable<PlanetInfo> ReadPlanetInfoFromXlsx(string xlsxFileName)
+        {
+            // TODO : Implement ReadPlanetInfoFromXlsx method using System.IO.Packaging + Linq-2-Xml
+
+            // HINT : Please be as simple & clear as possible.
+            //        No complex and common use cases, just this specified file.
+            //        Required data are stored in Planets.xlsx archive in 2 files:
+            //         /xl/sharedStrings.xml      - dictionary of all string values
+            //         /xl/worksheets/sheet1.xml  - main worksheet
+            var patchToStringValues = @"/xl/sharedStrings.xml";
+            var patchToMainWorksheet = @"/xl/worksheets/sheet1.xml";
+            var xmlsSharedString = LoadToDocument(xlsxFileName, patchToStringValues);
+            var xmlsWorksheets = LoadToDocument(xlsxFileName, patchToMainWorksheet);
+            //using (var package = Package.Open(xlsxFileName))
+            //using (var stream = package.GetPart(new Uri(@"/xl/sharedStrings.xml", UriKind.Relative)).GetStream())
+            //{
+            //    var sringValues = XDocument.Load(stream);
+            //}
+            var sc = XNamespace.Get("http://schemas.openxmlformats.org/spreadsheetml/2006/main");
+            var namesPlanet = xmlsSharedString.Descendants(sc + "t").
+                Select(pl => (string)pl).ToArray();
+            int indexPlanets = 0;
+            return xmlsWorksheets.
+                    Descendants(sc + "row")
+                    .Skip(1)
+                    .Select(x => new PlanetInfo
+                    {
+                        // Name = namesPlanet.ElementAt((int)x.Element(sc + "c").Element(sc + "v")),
+                        Name = namesPlanet[indexPlanets++],
+                        MeanRadius = (double)x.Elements(sc + "c").Where(y => ((string)y.Attribute("r")).
+                        StartsWith("B")).Elements(sc + "v").First()
+                    });
+
+        }
+        private static XDocument LoadToDocument(string xlsxFileName, string patchToXml)
+        {
+            using (var package = Package.Open(xlsxFileName))
+            {
+                using (var stream = package.GetPart(new Uri(patchToXml, UriKind.Relative)).GetStream())
+                {
+                    return XDocument.Load(stream);
+                }
+            }
+        }
+        /// <summary>
+        /// Calculates hash of stream using specifued algorithm
+        /// </summary>
+        /// <param name="stream">source stream</param>
+        /// <param name="hashAlgorithmName">hash algorithm ("MD5","SHA1","SHA256" and other supported by .NET)</param>
+        /// <returns></returns>
+        public static string CalculateHash(this Stream stream, string hashAlgorithmName)
 		{
-			// TODO : Implement ReadPlanetInfoFromXlsx method using System.IO.Packaging + Linq-2-Xml
+            // TODO : Implement CalculateHash method
+            using (var hashAlhorithm = HashAlgorithm.Create(hashAlgorithmName))
+            {
+                if (hashAlhorithm == null)
+                {
+                    throw new ArgumentException(null);
+                }
 
-			// HINT : Please be as simple & clear as possible.
-			//        No complex and common use cases, just this specified file.
-			//        Required data are stored in Planets.xlsx archive in 2 files:
-			//         /xl/sharedStrings.xml      - dictionary of all string values
-			//         /xl/worksheets/sheet1.xml  - main worksheet
+                return string.Join(string.Empty, hashAlhorithm.ComputeHash(stream).Select(x => x.ToString("x2").ToUpper()));
+            }
 
-			throw new NotImplementedException();
-		}
-
-
-		/// <summary>
-		/// Calculates hash of stream using specifued algorithm
-		/// </summary>
-		/// <param name="stream">source stream</param>
-		/// <param name="hashAlgorithmName">hash algorithm ("MD5","SHA1","SHA256" and other supported by .NET)</param>
-		/// <returns></returns>
-		public static string CalculateHash(this Stream stream, string hashAlgorithmName)
-		{
-			// TODO : Implement CalculateHash method
-			throw new NotImplementedException();
 		}
 
 
@@ -75,7 +114,6 @@ namespace IOStreams
 
                 default:
                     throw new ArgumentNullException();
-
             }
 		}
 
