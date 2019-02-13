@@ -37,11 +37,6 @@ namespace IOStreams
             var patchToMainWorksheet = @"/xl/worksheets/sheet1.xml";
             var xmlsSharedString = LoadToDocument(xlsxFileName, patchToStringValues);
             var xmlsWorksheets = LoadToDocument(xlsxFileName, patchToMainWorksheet);
-            //using (var package = Package.Open(xlsxFileName))
-            //using (var stream = package.GetPart(new Uri(@"/xl/sharedStrings.xml", UriKind.Relative)).GetStream())
-            //{
-            //    var sringValues = XDocument.Load(stream);
-            //}
             var sc = XNamespace.Get("http://schemas.openxmlformats.org/spreadsheetml/2006/main");
             var namesPlanet = xmlsSharedString.Descendants(sc + "t").
                 Select(pl => (string)pl).ToArray();
@@ -51,7 +46,6 @@ namespace IOStreams
                     .Skip(1)
                     .Select(x => new PlanetInfo
                     {
-                        // Name = namesPlanet.ElementAt((int)x.Element(sc + "c").Element(sc + "v")),
                         Name = namesPlanet[indexPlanets++],
                         MeanRadius = (double)x.Elements(sc + "c").Where(y => ((string)y.Attribute("r")).
                         StartsWith("B")).Elements(sc + "v").First()
