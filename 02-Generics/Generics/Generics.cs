@@ -34,23 +34,23 @@ namespace Task.Generics
         public static string ConvertToString<T>(this IEnumerable<T> list)
         {
             /// TODO : Implement ConvertToString<T>
-            return string.Join(ListSeparator.ToString(), list.ToArray());
-           /* int a = 0;
-            string str = "";
-            foreach (T item in list) { a++; }
+            return string.Join<T>(ListSeparator.ToString(), list);
+            /* int a = 0;
+             string str = "";
+             foreach (T item in list) { a++; }
 
-            foreach (T item in list)
-            {
-                a--;
-                if (a == 0)
-                {
-                    str = str + item.ToString();
-                }
-                else
-                {
-                    str = str + item.ToString() + ListSeparator;
-                }
-            }*/
+             foreach (T item in list)
+             {
+                 a--;
+                 if (a == 0)
+                 {
+                     str = str + item.ToString();
+                 }
+                 else
+                 {
+                     str = str + item.ToString() + ListSeparator;
+                 }
+             }*/
 
 
             //eturn str;
@@ -153,58 +153,104 @@ namespace Task.Generics
             where T2 : IComparable
             where T3 : IComparable
         {
-            for (int g = 0; g < 2; g++)
+            //switch (sortedColumn)
+            //{
+            //    case 0:
+
+            //        Array.Sort(array, (a, b) => a.Item1.CompareTo(b.Item1));
+            //        break;
+            //    case 1:
+            //        //array.OrderBy(x => x.Item1);
+            //        Array.Sort(array, (a, b) => a.Item2.CompareTo(b.Item2));
+            //        break;
+            //    case 2:
+            //        //array.OrderBy(x => x.Item1);
+            //        Array.Sort(array, (a, b) => a.Item3.CompareTo(b.Item3));
+            //        break;
+            //    default:
+            //        throw new IndexOutOfRangeException();
+            //};
+
+            //if (!ascending) Array.Reverse(array);
+
+
+            if (sortedColumn == 0)
             {
-                for (int n = 0; n < 2; n++)
-                {
-                    int s = n + 1;
-                    if (s == 3) { s = 0; }
-                    int a = 0;
-
-                    if (sortedColumn == 0)
-                    {
-                        a = array[n].Item1.CompareTo(array[s].Item1);
-                    }
-                    if (sortedColumn == 1)
-                    {
-                        a = array[n].Item2.CompareTo(array[s].Item2);
-                    }
-                    if (sortedColumn == 2)
-                    {
-                        a = array[n].Item3.CompareTo(array[s].Item3);
-                    }
-
-                    SortByAscending(a, ascending, ref array[s], ref array[n]);
-
-                }
+                Array.Sort(array, (a, b) => a.Item1.CompareTo(b.Item1));
             }
-        }
-
-        private static void SwapTuples<T1, T2, T3>(ref Tuple<T1, T2, T3> tuple1, ref Tuple<T1, T2, T3> tuple2)
-        {
-            var temp = tuple1;
-            tuple1 = tuple2;
-            tuple2 = temp;
-        }
-
-        private static void SortByAscending<T1, T2, T3>(int a, bool ascending,
-            ref Tuple<T1, T2, T3> tuple1, ref Tuple<T1, T2, T3> tuple2)
-        {
-            if (ascending == true)
+            if (sortedColumn == 1)
             {
-                if (a == 1)
-                {
-                    SwapTuples(ref tuple1, ref tuple2);
-                }
+                Array.Sort(array, (a, b) => a.Item2.CompareTo(b.Item2));
+            }
+            if (sortedColumn == 2)
+            {
+                Array.Sort(array, (a, b) => a.Item3.CompareTo(b.Item3));
+            }
+            if (sortedColumn > 2)
+            {
+                throw new IndexOutOfRangeException();
             }
             if (ascending == false)
             {
-                if (a == -1)
-                {
-                    SwapTuples(ref tuple1, ref tuple2);
-                }
+                Array.Reverse(array);
             }
+
+
+
+            //    for (int g = 0; g < 2; g++)
+            //    {
+            //        for (int n = 0; n < 2; n++)
+            //        {
+            //            int s = n + 1;
+            //            if (s == 3) { s = 0; }
+            //            int a = 0;
+
+            //            if (sortedColumn == 0)
+            //            {
+            //                a = array[n].Item1.CompareTo(array[s].Item1);
+            //            }
+            //            if (sortedColumn == 1)
+            //            {
+            //                a = array[n].Item2.CompareTo(array[s].Item2);
+            //            }
+            //            if (sortedColumn == 2)
+            //            {
+            //                a = array[n].Item3.CompareTo(array[s].Item3);
+            //            }
+
+            //            SortByAscending(a, ascending, ref array[s], ref array[n]);
+
+            //        }
+            //    }
+            //}
+
+            //private static void SwapTuples<T1, T2, T3>(ref Tuple<T1, T2, T3> tuple1, ref Tuple<T1, T2, T3> tuple2)
+            //{
+            //    var temp = tuple1;
+            //    tuple1 = tuple2;
+            //    tuple2 = temp;
+            //}
+
+            //private static void SortByAscending<T1, T2, T3>(int a, bool ascending,
+            //    ref Tuple<T1, T2, T3> tuple1, ref Tuple<T1, T2, T3> tuple2)
+            //{
+            //    if (ascending == true)
+            //    {
+            //        if (a == 1)
+            //        {
+            //            SwapTuples(ref tuple1, ref tuple2);
+            //        }
+            //    }
+            //    if (ascending == false)
+            //    {
+            //        if (a == -1)
+            //        {
+            //            SwapTuples(ref tuple1, ref tuple2);
+            //        }
+            //    }
+            //}
         }
+
     }
     /// <summary>
     ///   Generic singleton class
@@ -217,21 +263,26 @@ namespace Task.Generics
     {
 
         // TODO : Implement generic singleton class 
-        class SingletonCreator
+        //class SingletonCreator
 
-        {
+        //{
 
-            static SingletonCreator() { }
-            internal static readonly T instance = new T();
-        }
+        //    static SingletonCreator() { }
+        //    internal static readonly T instance = new T();
+        //}
 
-        public static T Instance
-        {
-            get
-            {
-                return SingletonCreator.instance;
-            }
-        }
+        //public static T Instance
+        //{
+        //    get
+        //    {
+        //        return SingletonCreator.instance;
+        //    }
+        //}
+       // ----------private Singleton() { }
+
+        private static readonly Lazy<T> instance = new Lazy<T>(() => new T());
+
+        public static T Instance { get { return instance.Value; } }
     }
 
 
@@ -309,7 +360,6 @@ namespace Task.Generics
                      {
                          return false;
                      }
-                     
                  }
                  return true;
              };
