@@ -3,7 +3,8 @@ C:\aorgish-net-training-tasks-32449dfbbae5\03-Collections\Collections.Test\bin\D
 C:\aorgish-net-training-tasks-32449dfbbae5\03-Collections\Collections.Test\bin\Debug\Collections.dll
 C:\aorgish-net-training-tasks-32449dfbbae5\03-Collections\Collections.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\aorgish-net-training-tasks-32449dfbbae5\03-Collections\Collections.Test\bin\Debug\Collections.pdb
-C:\aorgish-net-training-tasks-32449dfbbae5\03-Collections\Collections.Test\obj\Debug\Collections.Test.csprojResolveAssemblyReference.cache
 C:\aorgish-net-training-tasks-32449dfbbae5\03-Collections\Collections.Test\obj\Debug\Collections.Test.csproj.CoreCompileInputs.cache
 C:\aorgish-net-training-tasks-32449dfbbae5\03-Collections\Collections.Test\obj\Debug\Collections.Test.dll
 C:\aorgish-net-training-tasks-32449dfbbae5\03-Collections\Collections.Test\obj\Debug\Collections.Test.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\03-Collections\Collections.Test\obj\Debug\Collections.Test.csprojAssemblyReference.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\03-Collections\Collections.Test\obj\Debug\Collections.Test.csproj.CopyComplete

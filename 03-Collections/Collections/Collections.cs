@@ -35,7 +35,7 @@ namespace Collections.Tasks
         public static IEnumerable<int> GetFibonacciSequence(int count)
         {
             // TODO : Implement Fibonacci sequence generator
-
+            int first = 1, second = 1, result = 0;
             if (count < 0)
             {
                 throw new ArgumentException();
@@ -44,9 +44,12 @@ namespace Collections.Tasks
             {
                 yield break;
             }
-            int first = 1;
-            int second = 1;
-
+            if (count == 1)
+            {
+                yield return first;
+            }
+          
+           
             yield return first;
             yield return second;
 
