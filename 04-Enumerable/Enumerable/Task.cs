@@ -158,10 +158,9 @@ namespace EnumerableTask
         public IEnumerable<char> GetUsedChars(IEnumerable<string> data)
         {
             // TODO : Implement GetUsedChars
-            return data
-                .Where(x => x != null)
-                .DefaultIfEmpty()
-                .Aggregate((current, next) => String.Join("", current.Union(next))) ?? Enumerable.Empty<char>();
+            return data.Where(x => x != null).SelectMany(y => y).Distinct();
+                
+                
         }
 
 
@@ -314,7 +313,8 @@ namespace EnumerableTask
         public int GetDigitCharsCount(string data)
         {
             // TODO : Implement GetDigitCharsCount
-            return data.Where(ch => Char.IsDigit(ch)).Count();
+            // return data.Where(ch => Char.IsDigit(ch)).Count();
+            return data.Count(Char.IsDigit);
         }
 
 
@@ -407,8 +407,7 @@ namespace EnumerableTask
         {
             // TODO : Implement GetMissingDigits
             var ch = "0123456789";
-            return data.Where(x => x != null)
-                .Aggregate(ch, (current, next) => String.Join("", current.Except(next)));
+            return ch.Except(data.SelectMany(x => x));
         }
 
 
@@ -482,9 +481,9 @@ namespace EnumerableTask
         public IEnumerable<char> GetCommonChars(IEnumerable<string> data)
         {
             // TODO : Implement GetCommonChars
-            return data.Where(s => s != null)
-                .DefaultIfEmpty().
-                Aggregate((current, next) => String.Join("", current.Intersect(next))) ?? Enumerable.Empty<char>();
+            return data
+                .DefaultIfEmpty(string.Empty).Aggregate<IEnumerable<char>>((x, y) => x.Intersect(y));
+                
         }
 
         /// <summary> Calculates sum of all integers from object array </summary>
