@@ -572,7 +572,11 @@ namespace EnumerableTask
         public bool IsAllStringsAreUppercase(IEnumerable<string> data)
         {
             // TODO : Implement IsAllStringsAreUppercase
-            return data.DefaultIfEmpty("false").All(s => s.Equals(s.ToUpper()) && !String.IsNullOrEmpty(s));
+            if (data.Count() == 0)
+            {
+                return false;
+            }
+            return data.All(ch => (ch.Length != 0) && ch.All(x => Char.IsUpper(x)));
         }
 
         /// <summary> Finds first subsequence of negative integers </summary>
@@ -631,8 +635,7 @@ namespace EnumerableTask
         /// </example>
         public string GetNextVersionFromList(IEnumerable<string> versions, string currentVersion)
         {
-            // TODO : Implement GetNextVersionFromList
-            return versions.SkipWhile(s => !s.Equals(currentVersion)).Skip(1).FirstOrDefault();
+            return versions.SkipWhile(v => v != currentVersion).Skip(1).FirstOrDefault();
         }
 
         /// <summary>

@@ -3,7 +3,8 @@ C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\EnumerableTest\bin\Debu
 C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\EnumerableTest\bin\Debug\Enumerable.dll
 C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\EnumerableTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\EnumerableTest\bin\Debug\Enumerable.pdb
-C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\EnumerableTest\obj\Debug\EnumerableTest.csprojResolveAssemblyReference.cache
 C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\EnumerableTest\obj\Debug\EnumerableTest.csproj.CoreCompileInputs.cache
 C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\EnumerableTest\obj\Debug\EnumerableTest.dll
 C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\EnumerableTest\obj\Debug\EnumerableTest.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\EnumerableTest\obj\Debug\EnumerableTest.csprojAssemblyReference.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\04-Enumerable\EnumerableTest\obj\Debug\EnumerableTest.csproj.CopyComplete
