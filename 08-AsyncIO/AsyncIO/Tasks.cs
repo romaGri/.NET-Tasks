@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography;
-using System.Threading;
+using System.Text;
 using System.Threading.Tasks;
-
 namespace AsyncIO
 {
     public static class Tasks
@@ -21,7 +19,15 @@ namespace AsyncIO
         public static IEnumerable<string> GetUrlContent(this IEnumerable<Uri> uris) 
         {
             // TODO : Implement GetUrlContent
-            throw new NotImplementedException();
+           
+            WebClient client = new WebClient { Encoding = Encoding.UTF8 };
+
+            IEnumerable<string> dnlad;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+           
+            dnlad = uris.Select(uri => client.DownloadString(uri));
+            return dnlad;
+
         }
 
 

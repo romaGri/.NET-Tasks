@@ -1,0 +1,11 @@
+C:\aorgish-net-training-tasks-32449dfbbae5\08-AsyncIO\AsyncIO.Tests\bin\Debug\AsyncIO.Tests.dll.config
+C:\aorgish-net-training-tasks-32449dfbbae5\08-AsyncIO\AsyncIO.Tests\bin\Debug\AsyncIO.Tests.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\08-AsyncIO\AsyncIO.Tests\bin\Debug\AsyncIO.Tests.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\08-AsyncIO\AsyncIO.Tests\bin\Debug\AsyncIO.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\08-AsyncIO\AsyncIO.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\08-AsyncIO\AsyncIO.Tests\bin\Debug\AsyncIO.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\08-AsyncIO\AsyncIO.Tests\obj\Debug\AsyncIO.Tests.csprojAssemblyReference.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\08-AsyncIO\AsyncIO.Tests\obj\Debug\AsyncIO.Tests.csproj.CoreCompileInputs.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\08-AsyncIO\AsyncIO.Tests\obj\Debug\AsyncIO.Tests.csproj.CopyComplete
+C:\aorgish-net-training-tasks-32449dfbbae5\08-AsyncIO\AsyncIO.Tests\obj\Debug\AsyncIO.Tests.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\08-AsyncIO\AsyncIO.Tests\obj\Debug\AsyncIO.Tests.pdb
