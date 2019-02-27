@@ -153,47 +153,17 @@ namespace Task.Generics
             where T2 : IComparable
             where T3 : IComparable
         {
-            //switch (sortedColumn)
-            //{
-            //    case 0:
+            var propGetters = new Func<Tuple<T1, T2, T3>, IComparable>[]
+             {
+                 x => x.Item1,
+                 x => x.Item2,
+                 x => x.Item3
+             };
+            var propGetter = propGetters[sortedColumn];
 
-            //        Array.Sort(array, (a, b) => a.Item1.CompareTo(b.Item1));
-            //        break;
-            //    case 1:
-            //        //array.OrderBy(x => x.Item1);
-            //        Array.Sort(array, (a, b) => a.Item2.CompareTo(b.Item2));
-            //        break;
-            //    case 2:
-            //        //array.OrderBy(x => x.Item1);
-            //        Array.Sort(array, (a, b) => a.Item3.CompareTo(b.Item3));
-            //        break;
-            //    default:
-            //        throw new IndexOutOfRangeException();
-            //};
+            var koeff = ascending ? +1 : -1;
 
-            //if (!ascending) Array.Reverse(array);
-
-
-            if (sortedColumn == 0)
-            {
-                Array.Sort(array, (a, b) => a.Item1.CompareTo(b.Item1));
-            }
-            if (sortedColumn == 1)
-            {
-                Array.Sort(array, (a, b) => a.Item2.CompareTo(b.Item2));
-            }
-            if (sortedColumn == 2)
-            {
-                Array.Sort(array, (a, b) => a.Item3.CompareTo(b.Item3));
-            }
-            if (sortedColumn > 2)
-            {
-                throw new IndexOutOfRangeException();
-            }
-            if (ascending == false)
-            {
-                Array.Reverse(array);
-            }
+            Array.Sort(array, (x, y) => koeff * propGetter(x).CompareTo(propGetter(y)));
 
 
 
@@ -263,29 +233,22 @@ namespace Task.Generics
     {
 
         // TODO : Implement generic singleton class 
-        //class SingletonCreator
-
-        //{
-
-        //    static SingletonCreator() { }
-        //    internal static readonly T instance = new T();
-        //}
-
-        //public static T Instance
-        //{
-        //    get
-        //    {
-        //        return SingletonCreator.instance;
-        //    }
-        //}
-       // ----------private Singleton() { }
-
-        private static readonly Lazy<T> instance = new Lazy<T>(() => new T());
-
-        public static T Instance { get { return instance.Value; } }
+        private static volatile T instance = null;
+        public static T Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    if (instance == null)
+                    {
+                        instance = new T();
+                    }
+                }
+                return instance;
+            }
+        }
     }
-
-
 
     public static class FunctionExtentions
     {
