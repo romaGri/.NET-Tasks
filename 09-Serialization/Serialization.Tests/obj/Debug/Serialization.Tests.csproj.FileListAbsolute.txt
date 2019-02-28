@@ -1,0 +1,12 @@
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\bin\Debug\Resources\GoogleSearchJson.txt
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\bin\Debug\Resources\CLR-ETW.man
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\bin\Debug\Serialization.Tests.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\bin\Debug\Serialization.Tests.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\bin\Debug\Serialization.Tasks.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\bin\Debug\Serialization.Tasks.pdb
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.csprojAssemblyReference.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.csproj.CoreCompileInputs.cache
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.csproj.CopyComplete
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.dll
+C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.pdb
