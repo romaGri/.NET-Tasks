@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceStack.Text;
 namespace AsyncIO
 {
     public static class Tasks
@@ -22,10 +26,18 @@ namespace AsyncIO
            
             WebClient client = new WebClient { Encoding = Encoding.UTF8 };
 
+           // client.Headers[HttpRequestHeader.AcceptEncoding] = "gzip";
+            //var responseStream = new GZipStream(client.OpenRead(uris.ToString()), CompressionMode.Decompress);
+            //var reader = new StreamReader(responseStream);
             IEnumerable<string> dnlad;
+            
+            //foreach (var r in reader)
+            //{
+            //    dnlad = r;
+            //}
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
            
-            dnlad = uris.Select(uri => client.DownloadString(uri));
+            dnlad = uris.Select(uri => client.DownloadString(uri.ToString()));
             return dnlad;
 
         }
@@ -44,9 +56,39 @@ namespace AsyncIO
         public static IEnumerable<string> GetUrlContentAsync(this IEnumerable<Uri> uris, int maxConcurrentStreams)
         {
             // TODO : Implement GetUrlContentAsync
-            throw new NotImplementedException();
-        }
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            int index = 0;
+            var task = new Task<string>[maxConcurrentStreams];
 
+            foreach (var uri in uris)
+            {
+                if (index >= maxConcurrentStreams)
+                {
+                    var indexCompletedTasks = Task.WaitAny(task);
+                    var completedTasks = task[indexCompletedTasks];
+                    task[indexCompletedTasks] = GetOneUri(uri);
+                    yield return completedTasks.Result;
+                }
+                else
+                {
+                    task[index] = GetOneUri(uri);
+                    index++;
+                }
+            }
+
+            var listTasks = task.ToList();
+            while (!listTasks.Any())
+            {
+                var indexTask = Task.WaitAny(listTasks.ToArray());
+                var resultTask = listTasks[indexTask];
+                listTasks.RemoveAt(indexTask);
+                yield return resultTask.Result;
+            } 
+        }
+        private static Task<string> GetOneUri(Uri uri)
+        {
+            return new HttpClient().GetStringAsync(uri);
+        }
 
         /// <summary>
         /// Calculates MD5 hash of required resource.
