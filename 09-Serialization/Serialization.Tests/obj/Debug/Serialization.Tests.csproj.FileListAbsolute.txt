@@ -10,3 +10,15 @@ C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\
 C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.csproj.CopyComplete
 C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.dll
 C:\aorgish-net-training-tasks-32449dfbbae5\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.pdb
+C:\NET-tasks\09-Serialization\Serialization.Tests\bin\Debug\Resources\GoogleSearchJson.txt
+C:\NET-tasks\09-Serialization\Serialization.Tests\bin\Debug\Resources\CLR-ETW.man
+C:\NET-tasks\09-Serialization\Serialization.Tests\bin\Debug\Serialization.Tests.dll
+C:\NET-tasks\09-Serialization\Serialization.Tests\bin\Debug\Serialization.Tests.pdb
+C:\NET-tasks\09-Serialization\Serialization.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\NET-tasks\09-Serialization\Serialization.Tests\bin\Debug\Serialization.Tasks.dll
+C:\NET-tasks\09-Serialization\Serialization.Tests\bin\Debug\Serialization.Tasks.pdb
+C:\NET-tasks\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.csprojAssemblyReference.cache
+C:\NET-tasks\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.csproj.CoreCompileInputs.cache
+C:\NET-tasks\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.csproj.CopyComplete
+C:\NET-tasks\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.dll
+C:\NET-tasks\09-Serialization\Serialization.Tests\obj\Debug\Serialization.Tests.pdb

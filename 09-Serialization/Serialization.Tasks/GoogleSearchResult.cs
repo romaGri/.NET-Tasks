@@ -10,6 +10,7 @@ namespace Serialization.Tasks
 
     public class GoogleSearchResult
     {
+
     }
 
 
