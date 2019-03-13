@@ -1,0 +1,10 @@
+C:\NET-tasks\10-Reflection\Reflection.Tests\bin\Debug\Reflection.dll
+C:\NET-tasks\10-Reflection\Reflection.Tests\bin\Debug\Reflection.pdb
+C:\NET-tasks\10-Reflection\Reflection.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\NET-tasks\10-Reflection\Reflection.Tests\bin\Debug\Reflection.Tasks.dll
+C:\NET-tasks\10-Reflection\Reflection.Tests\bin\Debug\Reflection.Tasks.pdb
+C:\NET-tasks\10-Reflection\Reflection.Tests\obj\Debug\Reflection.Tests.csprojAssemblyReference.cache
+C:\NET-tasks\10-Reflection\Reflection.Tests\obj\Debug\Reflection.Tests.csproj.CoreCompileInputs.cache
+C:\NET-tasks\10-Reflection\Reflection.Tests\obj\Debug\Reflection.Tests.csproj.CopyComplete
+C:\NET-tasks\10-Reflection\Reflection.Tests\obj\Debug\Reflection.dll
+C:\NET-tasks\10-Reflection\Reflection.Tests\obj\Debug\Reflection.pdb
