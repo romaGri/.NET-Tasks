@@ -20,8 +20,9 @@ namespace Reflection.Tasks
             // TODO : Implement GetPublicObsoleteClasses method
             // Type type = Type.GetType(assemblyName);
             var assembly = Assembly.Load(assemblyName);
+
             return assembly.GetTypes().Where(x => x.IsClass && x.IsPublic && x.GetCustomAttributes(typeof(ObsoleteAttribute), true).Any())
-                .Select(x => x.Name);
+            .Select(x => x.Name);
 
 
 
@@ -47,7 +48,12 @@ namespace Reflection.Tasks
         /// <returns>property value of obj for required propertyPath</returns>
         public static T GetPropertyValue<T>(this object obj, string propertyPath) {
             // TODO : Implement GetPropertyValue method
-            throw new NotImplementedException();
+            var prop = propertyPath.Split('.');
+            foreach (var p in prop)
+            {
+                obj = obj.GetType().GetProperty(p).GetValue(obj, null);
+            }
+            return (T)obj; 
         }
 
 
