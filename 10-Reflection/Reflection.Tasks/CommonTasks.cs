@@ -21,7 +21,8 @@ namespace Reflection.Tasks
             // Type type = Type.GetType(assemblyName);
             var assembly = Assembly.Load(assemblyName);
 
-            return assembly.GetTypes().Where(x => x.IsClass && x.IsPublic && x.GetCustomAttributes(typeof(ObsoleteAttribute), true).Any())
+            return assembly.GetTypes()
+                .Where(x => x.IsClass && x.IsPublic && x.GetCustomAttributes(typeof(ObsoleteAttribute), true).Any())
             .Select(x => x.Name);
 
 
@@ -56,6 +57,11 @@ namespace Reflection.Tasks
             return (T)obj; 
         }
 
+        public static object GetPropertyValue (object obj, IEnumerable<string> propertyList)
+        {
+            return propertyList.Aggregate(obj, (value, property) => value.GetType().GetProperty(property).GetValue(value, null));
+        }
+
 
         /// <summary>
         /// Assign the value to the required property path
@@ -75,7 +81,11 @@ namespace Reflection.Tasks
         /// <param name="value">assigned value</param>
         public static void SetPropertyValue(this object obj, string propertyPath, object value) {
             // TODO : Implement SetPropertyValue method
-            throw new NotImplementedException();
+            var propertyList = propertyPath.Split('.');
+            var mainProp = propertyList.Last();
+            var mainPropParant = GetPropertyValue(obj , propertyList.Take(propertyList.Length -1));
+            mainPropParant.GetType().BaseType.GetProperty(mainProp).SetValue(mainProp , value , null);
+
         }
 
 

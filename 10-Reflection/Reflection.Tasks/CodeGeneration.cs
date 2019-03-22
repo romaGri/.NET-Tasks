@@ -24,7 +24,24 @@ namespace Reflection.Tasks
         /// </returns>
         public static Func<T[], T[], T> GetVectorMultiplyFunction<T>() where T : struct {
             // TODO : Implement GetVectorMultiplyFunction<T>.
-            throw new NotImplementedException();
+            var first = Expression.Parameter(typeof(T[]), "first");
+            var second = Expression.Parameter(typeof(T[]), "second");
+            var index = Expression.Parameter(typeof(T), "index");
+            var result = Expression.Parameter(typeof(int), "result");
+            var label = Expression.Label();
+
+            var multiply = Expression.Block(Expression.AddAssign(result,
+                Expression.Multiply(Expression.ArrayIndex(first, index),
+                                    Expression.ArrayIndex(second, index))),
+                                    Expression.PostIncrementAssign(index));
+
+            var block = Expression.Block(new[] { index, result },
+                Expression.Loop(
+                    Expression.IfThenElse(
+                        Expression.LessThan(index , Expression.ArrayLength(first)),
+                        multiply, Expression.Break( label ,result)), label), result);
+            return Expression.Lambda<Func<T[], T[], T>>(block, first, second).Compile();
+            //throw new NotImplementedException();
         } 
 
 
