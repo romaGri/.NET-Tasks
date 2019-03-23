@@ -56,11 +56,7 @@ namespace Reflection.Tasks
             }
             return (T)obj; 
         }
-
-        public static object GetPropertyValue (object obj, IEnumerable<string> propertyList)
-        {
-            return propertyList.Aggregate(obj, (value, property) => value.GetType().GetProperty(property).GetValue(value, null));
-        }
+        
 
 
         /// <summary>
@@ -81,10 +77,10 @@ namespace Reflection.Tasks
         /// <param name="value">assigned value</param>
         public static void SetPropertyValue(this object obj, string propertyPath, object value) {
             // TODO : Implement SetPropertyValue method
-            var propertyList = propertyPath.Split('.');
-            var mainProp = propertyList.Last();
-            var mainPropParant = GetPropertyValue(obj , propertyList.Take(propertyList.Length -1));
-            mainPropParant.GetType().BaseType.GetProperty(mainProp).SetValue(mainProp , value , null);
+            var property = propertyPath.Split('.');
+            var newObj = property.Length == 1 ? obj : GetPropertyValue<object>(obj, String.Join(".", property.Take(property.Length - 1)));
+            newObj.GetType().
+                BaseType.InvokeMember(property.Last(), BindingFlags.FlattenHierarchy | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty, null, newObj, new object[] { value });
 
         }
 
